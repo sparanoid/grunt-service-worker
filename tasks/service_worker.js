@@ -6,45 +6,55 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 module.exports = function(grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+  'use strict';
+
+  var path = require('path');
+  var swPrecache = require('sw-precache');
 
   grunt.registerMultiTask('service_worker', 'sw-precache wrapper', function() {
     // Merge task-specific and/or target-specific options with these defaults.
+    var done = this.async();
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+      cacheId: 'grunt-service-worker',
+      logger: grunt.log.writeln,
+      staticFileGlobs: [
+        '**/*.css',
+        '**/*.js',
+        '**/*.{gif,jpg,png}'
+      ],
+      verbose: true,
+
+      // grunt specific
+      baseDir: './',
+      workerFile: 'service-worker.js'
     });
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
-
-      // Handle options.
-      src += options.punctuation;
-
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+    // Map globs for later use
+    options.staticFileGlobs.forEach(function(glob, index, staticFileGlobs) {
+      options.staticFileGlobs[index] = options.baseDir + '/' + glob;
     });
+
+    // Check `stripPrefix`
+    if (!options.stripPrefix) {
+      options.stripPrefix = options.baseDir;
+    }
+
+    // Resolve worker file
+    if (options.workerDir) {
+      options.workerPath = path.resolve(options.workerDir, options.workerFile);
+    } else {
+      options.workerPath = path.resolve(options.baseDir, options.workerFile);
+    }
+
+    swPrecache.write(options.workerPath, options, function(error) {
+      if (error) {
+        grunt.fail.warn(error);
+      }
+      done();
+    });
+
   });
 
 };
