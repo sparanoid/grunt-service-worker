@@ -20,9 +20,8 @@ module.exports = function(grunt) {
       cacheId: 'grunt-service-worker',
       logger: grunt.log.writeln,
       staticFileGlobs: [
-        '**/*.css',
-        '**/*.js',
-        '**/*.{gif,jpg,png}'
+        '**/*.{css,html,jpg,gif,png,svg}',
+        '**/js/**.js'
       ],
       verbose: true,
 
