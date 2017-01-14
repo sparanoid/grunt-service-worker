@@ -8,6 +8,7 @@
 > `sw-precache` wrapper
 
 ## Getting Started
+
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
@@ -23,6 +24,7 @@ grunt.loadNpmTasks('grunt-service-worker');
 ## The "service_worker" task
 
 ### Overview
+
 In your project's Gruntfile, add a section named `service_worker` to the data object passed into `grunt.initConfig()`.
 
 ```js
@@ -30,63 +32,67 @@ grunt.initConfig({
   service_worker: {
     options: {
       // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+    }
   },
 });
 ```
 
 ### Options
 
-#### options.separator
+Options are passed to [sw-precache](https://github.com/GoogleChrome/sw-precache). In addition this task defines some extra options:
+
+#### options.baseDir
+
 Type: `String`
-Default value: `',  '`
+Default value: `'./'`
 
-A string value that is used to do something with whatever.
+The base working directory `swPrecache` scans.
 
-#### options.punctuation
+#### options.workerFile
+
 Type: `String`
-Default value: `'.'`
+Default value: `'service-worker.js'`
 
-A string value that is used to do something else with whatever else.
+Service Worker entry filename, `sw.js` would be a good alternative.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
-```js
-grunt.initConfig({
-  service_worker: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, `service_worker` will scans all files under `public` directory and generate `service-worker.js` with default options.
 
 ```js
 grunt.initConfig({
   service_worker: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+      baseDir: 'public'
+    }
+  },
+});
+```
+
+#### Custom Options
+
+In this example, `service_worker` will scans all files under `dist` directory and generate `sw.js` with a custom `staticFileGlobs`.
+
+```js
+grunt.initConfig({
+  service_worker: {
+    options: {
+      baseDir: 'dist',
+      workerFile: 'sw.js'
+      staticFileGlobs: [
+        '**/*.{gif,jpg,png}'
+      ]
+    }
   },
 });
 ```
 
 ## Contributing
+
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## License
+
 MIT
