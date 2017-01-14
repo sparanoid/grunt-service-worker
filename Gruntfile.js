@@ -32,19 +32,20 @@ module.exports = function(grunt) {
     service_worker: {
       default_options: {
         options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
+          baseDir: 'test/fixtures',
+          workerDir: 'tmp',
+          workerFile: 'default_options.js'
         }
       },
       custom_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!'
+          baseDir: 'test/fixtures',
+          workerDir: 'tmp',
+          workerFile: 'custom_options.js',
+          staticFileGlobs: [
+            '**/*.{gif,jpg,png}'
+          ]
         },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
       }
     },
 
