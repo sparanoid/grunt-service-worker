@@ -29,7 +29,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "sw-precache": "^4.3.0"
+    "sw-precache": "^5.2.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
