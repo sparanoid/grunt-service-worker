@@ -45,14 +45,14 @@ Options are passed to [sw-precache](https://github.com/GoogleChrome/sw-precache)
 
 #### options.baseDir
 
-Type: `String`  
+Type: `String`
 Default value: `'./'`
 
 The base working directory `swPrecache` scans.
 
 #### options.workerFile
 
-Type: `String`  
+Type: `String`
 Default value: `'service-worker.js'`
 
 Service Worker entry filename, `sw.js` would be a good alternative.
