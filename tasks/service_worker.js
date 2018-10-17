@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         '**/*.{css,html,jpg,gif,png,svg}',
         '**/js/**.js'
       ],
-      verbose: true,
+      verbose: false,
 
       // grunt specific
       baseDir: './',
