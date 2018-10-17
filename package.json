@@ -1,7 +1,7 @@
 {
   "name": "grunt-service-worker",
   "description": "sw-precache wrapper",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "homepage": "https://github.com/sparanoid/grunt-service-worker",
   "author": {
     "name": "Tunghsiao Liu",
@@ -29,13 +29,13 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "sw-precache": "^5.1.1"
+    "sw-precache": "^5.2.1"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-clean": "^1.0.0",
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-nodeunit": "^1.0.0"
+    "grunt-contrib-nodeunit": "^2.0.0"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"
