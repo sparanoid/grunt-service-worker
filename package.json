@@ -1,7 +1,7 @@
 {
   "name": "grunt-service-worker",
   "description": "sw-precache wrapper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/sparanoid/grunt-service-worker",
   "author": {
     "name": "Tunghsiao Liu",
