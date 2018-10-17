@@ -1,5 +1,7 @@
 # grunt-service-worker
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sparanoid/grunt-service-worker.svg)](https://greenkeeper.io/)
+
 [![NPM version](https://img.shields.io/npm/v/grunt-service-worker.svg?)](https://www.npmjs.com/package/grunt-service-worker)
 [![Build Status](https://travis-ci.org/sparanoid/grunt-service-worker.svg?branch=master)](https://travis-ci.org/sparanoid/grunt-service-worker)
 [![dependencies Status](https://img.shields.io/david/sparanoid/grunt-service-worker.svg)](https://david-dm.org/sparanoid/grunt-service-worker)
