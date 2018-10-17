@@ -1,14 +1,8 @@
 sudo: false
 language: node_js
 node_js:
-  - "7"
-  - "6"
-  - "4"
-matrix:
-  fast_finish: true
-cache:
-  directories:
-    - node_modules
+  - "9"
+  - "10"
 notifications:
   email: false
   slack:
