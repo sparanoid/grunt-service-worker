@@ -45,4 +45,13 @@ exports.service_worker = {
 
     test.done();
   },
+  limit_size: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/limit_size.js');
+    var expected = grunt.file.read('test/expected/limit_size.js');
+    test.equal(actual, expected, 'should limit file generated in sw.js by file size.');
+
+    test.done();
+  },
 };
