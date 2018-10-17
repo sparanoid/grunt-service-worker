@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     var done = this.async();
     var options = this.options({
       cacheId: 'grunt-service-worker',
-      logger: grunt.log.writeln,
+      logger: grunt.log.ok,
       staticFileGlobs: [
         '**/*.{css,html,jpg,gif,png,svg}',
         '**/js/**.js'
