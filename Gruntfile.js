@@ -46,6 +46,14 @@ module.exports = function(grunt) {
             '**/*.{gif,jpg,png}'
           ]
         },
+      },
+      limit_size: {
+        options: {
+          baseDir: 'test/fixtures',
+          workerDir: 'tmp',
+          workerFile: 'limit_size.js',
+          maximumFileSizeToCacheInBytes: 5
+        },
       }
     },
 

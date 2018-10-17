@@ -18,12 +18,12 @@ module.exports = function(grunt) {
     var done = this.async();
     var options = this.options({
       cacheId: 'grunt-service-worker',
-      logger: grunt.log.ok,
+      logger: grunt.verbose.writeln,
       staticFileGlobs: [
         '**/*.{css,html,jpg,gif,png,svg}',
         '**/js/**.js'
       ],
-      verbose: false,
+      verbose: true,
 
       // grunt specific
       baseDir: './',
@@ -54,6 +54,7 @@ module.exports = function(grunt) {
       done();
     });
 
+    grunt.log.ok(`${options.workerFile} generated, use -v to see sw-precache output.`);
   });
 
 };
