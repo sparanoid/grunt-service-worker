@@ -10,6 +10,8 @@
 
 module.exports = function(grunt) {
 
+  require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
+
   // Project configuration.
   grunt.initConfig({
     jshint: {
@@ -60,21 +62,52 @@ module.exports = function(grunt) {
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']
-    }
+    },
 
+    conventionalChangelog: {
+      options: {
+        changelogOpts: {
+          preset: "angular"
+        }
+      },
+      dist: {
+        src: "CHANGELOG.md"
+      }
+    },
+
+    bump: {
+      options: {
+        files: ["package.json"],
+        commitMessage: 'chore: release v%VERSION%',
+        commitFiles: ["-a"],
+        tagMessage: 'chore: create tag %VERSION%',
+        push: false
+      }
+    },
+
+    'npm-contributors': {
+      options: {
+        commitMessage: 'chore: update contributors'
+      }
+    }
   });
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
-
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'service_worker', 'nodeunit']);
+
+  grunt.registerTask('release', 'bump, changelog and publish to npm.', function(type) {
+    grunt.task.run([
+      'npm-contributors',
+      'bump:' + (type || 'patch') + ':bump-only',
+      'conventionalChangelog',
+      'bump-commit',
+      'npm-publish'
+    ]);
+  });
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
